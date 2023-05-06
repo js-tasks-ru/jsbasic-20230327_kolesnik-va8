@@ -102,7 +102,7 @@ export default class Carousel {
 
     arrowLeft.style.display = this.currentSlideIndex === 0 ? "none" : "flex";
     arrowRight.style.display =
-      this.currentSlideIndex === this.slidesElements.length - 1
+      this.currentSlideIndex === this.slidesElements.length - 1 
         ? "none"
         : "flex";
   }
