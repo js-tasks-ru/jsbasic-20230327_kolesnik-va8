@@ -1,8 +1,7 @@
+import createElement from "../../assets/lib/create-element.js";
+import escapeHtml from "../../assets/lib/escape-html.js";
 
-import createElement from '../../assets/lib/create-element.js';
-import escapeHtml from '../../assets/lib/escape-html.js';
-
-import Modal from '../../7-module/2-task/index.js';
+import Modal from "../../7-module/2-task/index.js";
 
 export default class Cart {
   cartItems = []; // [product: {...}, count: N]
@@ -172,24 +171,25 @@ export default class Cart {
     }
 
     if (cartItem) {
-
       let productId = cartItem.product.id;
-      let productElement = modalBody.querySelector(`[data-product-id="${productId}"]`);
+      let productElement = modalBody.querySelector(
+        `[data-product-id="${productId}"]`
+      );
       if (cartItem.count === 0) {
         if (productElement) {
           productElement.remove();
         }
       } else {
-      let productCount = modalBody.querySelector(
-        `[data-product-id="${productId}"] .cart-counter__count`
-      );
-      let productPrice = modalBody.querySelector(
-        `[data-product-id="${productId}"] .cart-product__price`
-      );
-      productCount.textContent = cartItem.count;
-      productPrice.textContent = `€${(
-        cartItem.product.price * cartItem.count
-      ).toFixed(2)}`;
+        let productCount = modalBody.querySelector(
+          `[data-product-id="${productId}"] .cart-counter__count`
+        );
+        let productPrice = modalBody.querySelector(
+          `[data-product-id="${productId}"] .cart-product__price`
+        );
+        productCount.textContent = cartItem.count;
+        productPrice.textContent = `€${(
+          cartItem.product.price * cartItem.count
+        ).toFixed(2)}`;
       }
     }
     let infoPrice = modalBody.querySelector(".cart-buttons__info-price");
