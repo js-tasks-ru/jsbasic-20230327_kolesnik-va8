@@ -1,6 +1,8 @@
-import createElement from "../../assets/lib/create-element.js";
-import escapeHtml from "../../assets/lib/escape-html.js";
-import Modal from "../../7-module/2-task/index.js";
+
+import createElement from '../../assets/lib/create-element.js';
+import escapeHtml from '../../assets/lib/escape-html.js';
+
+import Modal from '../../7-module/2-task/index.js';
 
 export default class Cart {
   cartItems = []; // [product: {...}, count: N]
@@ -74,7 +76,6 @@ export default class Cart {
 
   renderProduct(product, count) {
     return createElement(`
-    <div class="cart-product" data-product-id="${product.id}">
       <div class="cart-product__img">
         <img src="/assets/images/products/${product.image}" alt="product">
       </div>
