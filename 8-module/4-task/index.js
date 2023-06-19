@@ -228,6 +228,9 @@ export default class Cart {
               <img src="/assets/images/delivery.gif">
             </p>
           </div>`;
+
+          this.cartItems = [];
+          this.cartIcon.update(this);
         }
       })
       .finally(() => {
