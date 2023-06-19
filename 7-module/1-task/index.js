@@ -34,7 +34,10 @@ export default class RibbonMenu {
     this.innerContainer.addEventListener("scroll", this.updateArrowVisibility);
 
     this.selectCategory(this.categories[0].id);
-    this.updateArrowVisibility();
+
+    requestAnimationFrame(()=> {
+      this.updateArrowVisibility();
+    });
   }
 
   selectCategory(categoryId) {
