@@ -55,18 +55,25 @@ export default class StepSlider {
     this.sliderThumb.style.position = "absolute";
     this.sliderThumb.addEventListener("pointermove", this.moving);
     this.sliderThumb.addEventListener("pointerup", this.finishMoving);
+    window.addEventListener("pointermove", this.moving);
+    window.addEventListener("pointerup", this.finishMoving);
   };
 
   moving = (event) => {
     let left = event.clientX - this.elem.getBoundingClientRect().left;
     let leftRelative = left / this.elem.offsetWidth;
+    leftRelative = Math.max(0, Math.min(leftRelative, 1));
+
     let leftPercents = leftRelative * 100;
+    leftRelative = Math.max(0, Math.min(leftRelative, 1));
     this.sliderThumb.style.left = `${leftPercents}%`;
     this.sliderProgress.style.width = `${leftPercents}%`;
+
     let segments = this.steps - 1;
     let approximateValue = leftRelative * segments;
     this.value = Math.round(approximateValue);
     this.sliderThumbSpan.textContent = this.value;
+
     let spanActive = this.value + 1;
     let spans = this.elem.querySelectorAll(".slider__steps > span");
     for (let span of spans) {
@@ -81,6 +88,8 @@ export default class StepSlider {
   finishMoving = () => {
     this.sliderThumb.removeEventListener("pointerup", this.startMoving);
     this.sliderThumb.removeEventListener("pointermove", this.moving);
+    window.removeEventListener("pointermove", this.moving);
+    window.removeEventListener("pointerup", this.finishMoving);
     this.elem.classList.remove("slider_dragging");
     this.sliderThumb.finishMoving = null;
   };
